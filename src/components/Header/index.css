@@ -1,0 +1,9 @@
+/* Write your CSS code here */
+.rowing {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+li {
+  margin-right: 10px;
+}
