@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie'
-
 import './index.css'
 
 import Header from '../Header'

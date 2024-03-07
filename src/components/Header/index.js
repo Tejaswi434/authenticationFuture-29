@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 const Header = () => (
   <ul className="rowing">
     <li>
-      <Link to="/home"> Home </Link>{' '}
+      <Link to="/"> Home </Link>{' '}
     </li>{' '}
     <li>
       {' '}

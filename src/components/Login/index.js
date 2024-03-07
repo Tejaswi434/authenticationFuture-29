@@ -1,19 +1,16 @@
 import './index.css'
 
-import {Component} from 'react'
-
 import {Redirect, withRouter} from 'react-router-dom'
 
 import Cookies from 'js-cookie'
 
-class Login extends Component {
-  gettingLogin = jwtToken => {
-    const {history} = this.props
-    Cookies.set('jwt_Token', jwtToken, {expires: 30})
-    history.push('/home')
+const Login = props => {
+  const gettingLogin = jwtToken => {
+    const {history} = props
+    Cookies.set('jwt_token', jwtToken, {expires: 30})
+    history.replace('/')
   }
-
-  change = async () => {
+  const change = async () => {
     const data = {
       username: 'rahul',
       password: 'rahul@2021',
@@ -29,22 +26,26 @@ class Login extends Component {
     const response = await result.json()
 
     if (result.ok === true) {
-      this.gettingLogin(response.jwt_Token)
+      gettingLogin(response.jwt_Token)
       console.log(result.ok)
     } else {
       ;<Redirect to="/login" />
     }
   }
 
-  render() {
-    return (
-      <div>
-        <h1>Please Login</h1>
-        <button type="button" onClick={this.change}>
-          Login with sample creds
-        </button>
-      </div>
-    )
+  const Finding = Cookies.get('jwt_token')
+  if (Finding !== undefined) {
+    return <Redirect to="/" />
   }
+
+  return (
+    <div>
+      <h1>Please Login</h1>
+      <button type="button" onClick={change}>
+        Login with sample creds
+      </button>
+    </div>
+  )
 }
+
 export default withRouter(Login)
